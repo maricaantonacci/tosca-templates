@@ -44,7 +44,7 @@ echo Run amber
 $AMBERHOME/bin/sander -O -i sander0.in -o sander0.out -p prmtop -c prmcrd -r sander0.crd -ref  prmcrd
 if [ $? -eq 0 ]; then echo 1st step ok; else exit 1; fi
 
-$AMBERHOME/bin/ambpdb -p prmtop < sander0.crd > amber_final0.pdb
+$AMBERHOME/bin/ambpdb -p prmtop -c sander0.crd > amber_final0.pdb
 if [ $? -eq 0 ]; then echo 2nd step ok; else exit 1; fi
 
 sleep 3
