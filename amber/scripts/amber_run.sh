@@ -64,7 +64,6 @@ fi
 cd -
 
 rm -rf "$WORKDIR"/*
-rm -rf "$WORKDIR"
 echo End at $(date)
 
 sleep 5
