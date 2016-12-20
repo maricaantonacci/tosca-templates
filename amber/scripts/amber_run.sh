@@ -1,6 +1,6 @@
 #!/bin/bash
 
-WORKDIR=$MESOS_SANDBOX
+#WORKDIR=$MESOS_SANDBOX
 
 # if INPUT_ONEDATA_TOKEN is set...
 if [ ! -z ${INPUT_ONEDATA_TOKEN+x} ]; then
@@ -28,6 +28,9 @@ ONECLIENT_AUTHORIZATION_TOKEN="$OUTPUT_ONEDATA_TOKEN" PROVIDER_HOSTNAME="$OUTPUT
 mkdir -p "$OUTPUTDIR" || exit 1
 rm -rf "$OUTPUTDIR"/*
 
+WORKDIR="$OUTPUTDIR"/tmp
+mkdir "$WORKDIR" 
+
 # Extract input
 echo Extracting input
 tar xvfz "$INPUTDIR/in.tgz" --no-same-owner -C "$WORKDIR" || exit 1
@@ -44,6 +47,8 @@ if [ $? -eq 0 ]; then echo 1st step ok; else exit 1; fi
 $AMBERHOME/bin/ambpdb -p prmtop < sander0.crd > amber_final0.pdb
 if [ $? -eq 0 ]; then echo 2nd step ok; else exit 1; fi
 
+sleep 3
+
 # Collect output
 tar cvfz pro.tgz ./*  --exclude amber_run.sh
 
@@ -56,7 +61,9 @@ if [ -e "$OUTPUTDIR"/pro.tgz ]; then
 else
    ec=1
 fi
+cd -
 
+rm -rf "$WORKDIR"
 echo End at $(date)
 
 sleep 5
