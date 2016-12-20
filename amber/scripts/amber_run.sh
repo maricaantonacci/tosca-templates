@@ -20,6 +20,9 @@ OUTPUT_ONEDATA_SPACE=${OUTPUT_ONEDATA_SPACE:-$ONEDATA_SPACE}
 OUTPUT_PATH=${OUTPUT_PATH:-$ONEDATA_PATH}
 OUTPUTDIR="/onedata/output/$OUTPUT_ONEDATA_SPACE/$OUTPUT_PATH"
 
+echo $OUTPUT_ONEDATA_TOKEN
+echo $OUTPUT_ONEDATA_SPACE
+
 # mount onedata output space
 mkdir -p /onedata/output
 ONECLIENT_AUTHORIZATION_TOKEN="$OUTPUT_ONEDATA_TOKEN" PROVIDER_HOSTNAME="$OUTPUT_ONEDATA_PROVIDERS" oneclient --no_check_certificate --authentication token -o rw /onedata/output || exit 1
