@@ -16,4 +16,3 @@ The applications currently supported are:
 * mesos_cluster.yaml: Deploy a [mesos](https://mesos.apache.org/) cluster. The cluster is composed by one master, three slaves and one load balancer.
  
 * powerfit.yaml: Deploy an instance that supports [PowerFit](https://github.com/haddocking/disvis.git).
-
